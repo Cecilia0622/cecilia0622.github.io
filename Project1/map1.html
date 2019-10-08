@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leaflet Map</title>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<style>
+		body {
+			margin: 0px;
+		}
+
+		img {
+			float: left;
+			padding-right: 10px;
+		}
+
+		p {
+		    font-size: 15px;
+		    line-height: 25px;
+		}
+
+		#wrapper {
+			width: 715px;
+		}
+
+		#map {
+			width: 695px;
+			margin: 0 auto;
+			height: 375px;
+		}
+
+		#controls {
+			width: 100%;
+			margin: 0 auto;
+			padding: 15px;
+		}
+
+		#header {
+			margin-top: 0px;
+			margin-bottom: 0px;
+		}
+	</style>
+</head>
+<body>
+	<!-- Our web map and content will go here -->
+	<div id="wrapper">
+		<div id="header">
+			<h1><img src="images/map-logo.png" alt="Coffee Cup Logo" style="height: 38px; width: 38px;">Rodent Violations - Cambridge, MA</h1>
+		</div>
+		<div id="map"></div>
+		<div id="controls">
+			<button class="button" id="toggleButton">Display Rodent Violations</button>
+			<div id="credits"><p>&copy;#webMapWorkshop - Mike Foster, 2015</p></div>
+		</div>
+
+	</div>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>
+    	// Create Map Object
+    	var map = L.map('map',{ center: [51.5144,-0.1354], zoom: 15 });
+		var lineStyle = {
+			"color": "black",
+			"weight": 2,
+			"opacity": 1
+		}
+    	// Add Tile Layer from MAPC and MassGIS
+		L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+			maxZoom: 17,
+			minZoom: 1
+		}).addTo(map);
+
+		// Add Rodent Violation GeoJSON Data
+		// Null variable that will hold rodent violation data
+		var violationPoints = null;
+		
+		// Get GeoJSON and put on it on the map when it loads
+		$.getJSON("streets_all_reset.json",function(data){
+		    // set violationPoints to the dataset, and add the rodent violation GeoJSON layer to the map
+		    violationPoints = L.geoJson(data,{
+				filter: function (feature, layer) {
+					return feature.geometry.type == "LineString";
+				},
+				style: lineStyle
+			}).addTo(map);
+		});
+	</script>
+</body>
+</html>
