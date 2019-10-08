@@ -110,12 +110,12 @@
 		.attr("id","barChart")
 		.attr("transform","translate(60,10)")
 		
-		pieChart = d3.select("body").append("div")
+		pieChart = d3.select("#main")
 		.append("svg")
-		.attr("width",600)
-		.attr("height",250)
+		.attr("width",300)
+		.attr("height",600)
 		.attr("id","pieChart")
-		.attr("transform","translate(10,10)")	
+		.attr("transform","translate(60,10)")	
 		
 		toolTip = d3.select("body")
 		.append("g")
@@ -426,12 +426,12 @@
 		d3.selectAll("#pieChart")
 			.append("g")
 			.attr("id","agePie")
-			.attr("transform", "translate(150,125)")
+			.attr("transform", "translate(100,150)")
 		
 		d3.select("#pieChart")
 			.append("g")
 			.attr("id","genderPie")
-			.attr("transform", "translate(400,125)")
+			.attr("transform", "translate(100,450)")
 			
 		// sum death number with respect to date
 		var deathDateSum = d3.nest()
