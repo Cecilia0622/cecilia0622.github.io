@@ -324,7 +324,13 @@
 			.enter()
 			.append("path")
 			.attr("d", cross)
-			.attr("class","death")
+			.attr("id", function(d) {
+					if (d.properties.age != ">80")
+						return "death"+ d.properties.age
+					else	
+						return "death80"
+					})
+			.attr("class", function(d) {return "date"+ d.properties.deathday+" death"})
 			.attr("transform", function(d) { return "translate("+projection(d.geometry.coordinates)+")"; })
 			.style("fill", function (d) {return d.properties.color})	
 			.style("opacity",0.8)
