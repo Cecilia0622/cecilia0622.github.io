@@ -62,8 +62,8 @@
 <div class="header">
   <h3>Mengmeng's H517 Project #1</h3>
   <p>Dr. John Snow Interactive Map</p>
-  <a>Document</a>&nbsp;&nbsp;&nbsp;&nbsp;<a> YouTube Video</a>
-  &nbsp;&nbsp;&nbsp;&nbsp; <a>Project</a>
+  <a href="pictures/document.html">Document</a>&nbsp;&nbsp;&nbsp;&nbsp;<a> YouTube Video</a>
+  &nbsp;&nbsp;&nbsp;&nbsp; <a href="">Project</a>
 </div>
 
 
@@ -314,6 +314,7 @@
 						return "death80"
 					})
 			.attr("class", function(d) {return "date"+ d.properties.deathday+" death"})
+			.attr("deathday",function(d) {return "date"+ d.properties.deathday})
 			.attr("transform", function(d) { return "translate("+projection(d.geometry.coordinates)+")"; })
 			.style("fill", function (d) {return d.properties.color})	
 			.style("opacity",0.8)
@@ -331,6 +332,7 @@
 						return "death80"
 					})
 			.attr("class", function(d) {return "date"+ d.properties.deathday+" death"})
+			.attr("deathday",function(d) {return "date"+ d.properties.deathday})
 			.attr("transform", function(d) { return "translate("+projection(d.geometry.coordinates)+")"; })
 			.style("fill", function (d) {return d.properties.color})	
 			.style("opacity",0.8)
@@ -447,12 +449,12 @@
 		
 		// create a time parser (modifier) to convert date-string
 		var parser = d3.timeParse("%d-%b");
-		
+		var dateArray= [];
 		// convert date-string to workable date and add another variable (time)
 		for (i in deathDateSum) {
-			deathDateSum[i].time = parser(deathDateSum[i].key);
+			deathDateSum[i].time = parser(deathDateSum[i].key)
+			dateArray[i] = "path[deathday="+deathDateSum[i].key+"]";
 		};
-		
 		// sort using date
 		deathDateSum.sort(function(x,y) {
 			return d3.descending(x.time, y.time)
@@ -478,22 +480,505 @@
 			.data(deathDateSum)
 			.enter()
 			.append('rect')
-			.attr("id", function(d) {return "date"+ d.key+" death"})
+			.attr("id", function(d) {return d.key})
 			.attr("width", function(d) { return d.value; })
 			.attr("height", 15)
 			.attr("x", 1)
 			.attr("y", function(d) { return scaleY(d.key); })
 			.attr("fill", "darkred")
 			.attr("transform", "translate(50,300)")
-			.on("click", function(){
-				var newColor   = d3.select(this).attr("fill") === "darkred" ? "orange" : "darkred" 
-				d3.select(this).attr("fill", newColor)			
+			.on("click", function(){			
+				var newColor   = d3.select(this).attr("fill") == "darkred" ? "orange" : "darkred" 
+					d3.selectAll("rect").attr("fill", "darkred")
+					d3.select(this).attr("fill", newColor)		
+				var selection = d3.select(this).attr("id")
+				if (selection == "19-Aug")
+					{	
+						if (d3.selectAll("[deathday=date19-Aug]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date19-Aug]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "20-Aug")
+					{					
+						if (d3.selectAll("[deathday=date20-Aug]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date20-Aug]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "21-Aug")
+					{					
+						if (d3.selectAll("[deathday=date21-Aug]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date21-Aug]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "23-Aug")
+					{					
+						if (d3.selectAll("[deathday=date23-Aug]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date23-Aug]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "24-Aug")
+					{					
+						if (d3.selectAll("[deathday=date24-Aug]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date24-Aug]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "26-Aug")
+					{					
+						if (d3.selectAll("[deathday=date26-Aug]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date26-Aug]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "27-Aug")
+					{					
+						if (d3.selectAll("[deathday=date27-Aug]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date27-Aug]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "29-Aug")
+					{					
+						if (d3.selectAll("[deathday=date29-Aug]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date29-Aug]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "30-Aug")
+					{					
+						if (d3.selectAll("[deathday=date30-Aug]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date30-Aug]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "31-Aug")
+					{					
+						if (d3.selectAll("[deathday=date31-Aug]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date31-Aug]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "1-Sep")
+					{	
+						
+						if (d3.selectAll("[deathday=date1-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date1-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "2-Sep")
+					{
+					
+						if (d3.selectAll("[deathday=date2-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date2-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "3-Sep")
+					{		
+						
+						if (d3.selectAll("[deathday=date3-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date3-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "4-Sep")
+					{					
+						if (d3.selectAll("[deathday=date4-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date4-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "5-Sep")
+					{					
+						if (d3.selectAll("[deathday=date5-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date5-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "6-Sep")
+					{					
+						if (d3.selectAll("[deathday=date6-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date6-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "7-Sep")
+					{					
+						if (d3.selectAll("[deathday=date7-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date7-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "8-Sep")
+					{					
+						if (d3.selectAll("[deathday=date8-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date8-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "9-Sep")
+					{					
+						if (d3.selectAll("[deathday=date9-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date9-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "10-Sep")
+					{					
+						if (d3.selectAll("[deathday=date10-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date10-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "11-Sep")
+					{					
+						if (d3.selectAll("[deathday=date11-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date11-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "12-Sep")
+					{					
+						if (d3.selectAll("[deathday=date12-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date12-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "13-Sep")
+					{					
+						if (d3.selectAll("[deathday=date13-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date13-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "14-Sep")
+					{					
+						if (d3.selectAll("[deathday=date14-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date14-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "15-Sep")
+					{					
+						if (d3.selectAll("[deathday=date15-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date15-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "16-Sep")
+					{					
+						if (d3.selectAll("[deathday=date16-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date16-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "17-Sep")
+					{					
+						if (d3.selectAll("[deathday=date17-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date17-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "18-Sep")
+					{					
+						if (d3.selectAll("[deathday=date18-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date18-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "19-Sep")
+					{					
+						if (d3.selectAll("[deathday=date19-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date19-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "20-Sep")
+					{					
+						if (d3.selectAll("[deathday=date20-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date20-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "21-Sep")
+					{					
+						if (d3.selectAll("[deathday=date21-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date21-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "22-Sep")
+					{					
+						if (d3.selectAll("[deathday=date22-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date22-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "23-Sep")
+					{					
+						if (d3.selectAll("[deathday=date23-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date23-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}
+				else if (selection == "24-Sep")
+					{					
+						if (d3.selectAll("[deathday=date24-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date24-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "25-Sep")
+					{					
+						if (d3.selectAll("[deathday=date25-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date25-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "26-Sep")
+					{					
+						if (d3.selectAll("[deathday=date26-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date26-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
+				else if (selection == "27-Sep")
+					{					
+						if (d3.selectAll("[deathday=date27-Sep]").style("opacity") == 0.8)
+							{
+								d3.selectAll(".death").style("opacity",0)
+								d3.selectAll("[deathday=date27-Sep]").style("opacity",1)
+							}	
+						else
+							{	
+								d3.selectAll(".death").style("opacity",0.8)
+								d3.select(this).attr("fill", "darkred")	
+							}
+					}	
 				
-				d3.select(this).attr("fill") === "darkred" ? selection.pop(d3.select(this).attr("id")) : selection.push(d3.select(this).attr("id")) 
-				
-				console.log(selection)
-				})
-	
+				}	
+				)
 		
 		//add numbers
 		var barText = d3.select("#barChart").append("g")
@@ -536,7 +1021,6 @@
 		agePieLayer.selectAll("#agePie")
 			.data(pie(deathAgeSum))
 			.enter().append("g")
-		console.log(pie(deathAgeSum))
 		
 		agePieLayer.selectAll("g")
 			.append("text")
@@ -593,7 +1077,7 @@
 					d3.selectAll(".death").style("opacity",1)
 					return toolTip.style("opacity",0)
 				})
-		
+			
 			
 		// sum death number with respect to sex
 		var deathGenderSum = d3.nest()
